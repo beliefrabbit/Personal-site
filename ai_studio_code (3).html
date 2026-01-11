@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGACY & LIGHT | Creative Director</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Manrope:wght@200;300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --deep-navy: #00050a;
+            --soft-white: #FCFCFC;
+            --accent-gold: #D4AF37; /* 極細微的點綴，象徵智慧 */
+        }
+
+        body {
+            background-color: var(--deep-navy);
+            color: var(--soft-white);
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        .font-cinzel { font-family: 'Cinzel', serif; }
+
+        /* 自定義游標：帶有擴散光圈 */
+        #cursor {
+            width: 6px; height: 6px;
+            background: #fff; border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 10000;
+        }
+        #cursor-follower {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 9999;
+            transition: transform 0.3s ease-out;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        }
+
+        /* 柔和的光效背景 */
+        .glow-bg {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw; height: 80vh;
+            background: radial-gradient(circle, rgba(60,80,110,0.15) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 螢光筆效果：改為更溫暖的淡灰色 */
+        .hl {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+        .hl::after {
+            content: '';
+            position: absolute; left: 0; bottom: 0;
+            width: 0%; height: 100%;
+            background-color: #f0f0f0;
+            z-index: -1;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .is-active .hl::after { width: 100%; }
+
+        /* 圖片容器：法式優雅 */
+        .portrait-frame {
+            position: relative;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: border 0.5s ease;
+        }
+        .portrait-frame:hover { border-color: rgba(255,255,255,0.4); }
+
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-10 py-12 flex justify-between items-center mix-blend-difference">
+        <div class="text-[10px] tracking-[0.8em] font-bold uppercase">Archive & Mentorship</div>
+        <div class="flex gap-12 items-center">
+            <a href="#mentorship" class="text-[9px] tracking-widest opacity-60 hover:opacity-100 transition-opacity uppercase">Legacy</a>
+            <button class="w-8 h-8 flex flex-col justify-center gap-2 group">
+                <span class="w-full h-[1px] bg-white transition-transform group-hover:rotate-45 group-hover:translate-y-1.5"></span>
+                <span class="w-full h-[1px] bg-white transition-transform group-hover:-rotate-45 group-hover:-translate-y-1"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section: Authority meets Hope -->
+    <section class="relative min-h-screen flex items-center pt-20">
+        <div class="glow-bg"></div>
+        <div class="container mx-auto px-10 grid grid-cols-12 items-center gap-10">
+            
+            <div class="col-span-12 lg:col-span-7 z-10">
+                <div class="overflow-hidden mb-4">
+                    <p id="hero-tag" class="text-[10px] tracking-[0.6em] opacity-40 uppercase">Architect of Visual Legacy</p>
+                </div>
+                <h1 id="hero-title" class="font-cinzel text-[10vw] lg:text-[8vw] leading-[0.9] tracking-tighter mb-8">
+                    LEGACY<br><span class="opacity-40 italic">IN LIGHT</span>
+                </h1>
+                <p id="hero-para" class="max-w-md text-sm font-light leading-relaxed opacity-60 mb-10">
+                    這不只是關於設計，而是關於如何透過視覺語言，為下一代創意者點燃前行的燈火。嚴謹的邏輯，溫暖的視角。
+                </p>
+                <a href="#mentorship" class="inline-block border border-white/20 px-8 py-4 text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-500">
+                    Explore My Philosophy
+                </a>
+            </div>
+
+            <div class="col-span-12 lg:col-span-5 flex justify-end">
+                <div class="portrait-frame reveal-img">
+                    <img 
+                        src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop" 
+                        alt="Creative Director" 
+                        class="w-full aspect-[4/5] object-cover grayscale contrast-110 opacity-90"
+                    >
+                    <div class="absolute -bottom-6 -right-6 bg-white text-black p-8 hidden lg:block">
+                        <p class="text-[9px] tracking-[0.4em] font-bold">DIRECTION 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Section: The "Helping" Vibe -->
+    <section id="mentorship" class="bg-white text-black py-48 px-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+                <div class="lg:col-span-4">
+                    <h3 class="font-cinzel text-xs tracking-[0.5em] font-bold text-zinc-400 mb-10">THE MENTORSHIP</h3>
+                    <h2 class="text-5xl font-cinzel leading-tight reveal-y">
+                        Nurturing<br>The Next<br><span class="italic">Chapter</span>
+                    </h2>
+                </div>
+                <div class="lg:col-span-8 space-y-12">
+                    <p class="text-3xl md:text-4xl font-light leading-snug reveal-y">
+                        「頂級的專業，是用來<span class="hl px-2">支撐夢想</span>的。」我堅信創意不應是孤島，前輩留下的路標，能讓後進少走彎路。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-10 reveal-y">
+                        <div class="space-y-4">
+                            <h4 class="font-bold tracking-widest text-xs uppercase opacity-40">Open Doors</h4>
+                            <p class="text-sm leading-relaxed text-zinc-500">
+                                每年開放三個名額為年輕設計師提供一對一指導。這不是商業諮詢，而是一場關於審美與靈魂的對話。
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <h4 class="font-bold tracking-widest text-xs uppercase opacity-40">Shared Wisdom</h4>
+                            <p class="text-sm leading-relaxed text-zinc-500">
+                                我將過去二十年在 K-Ent 與高端品牌積累的 Methodologies 全部文件化，回饋給正在探索中的創意社群。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Portfolio Grid (Bento) -->
+    <section class="py-40 px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 reveal-y">
+                <h2 class="font-cinzel text-5xl mb-4">SELECTED LEGACY</h2>
+                <div class="w-10 h-[1px] bg-white/30 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-12 gap-8" id="portfolio-grid">
+                <div class="col-span-12 md:col-span-7 h-[600px] overflow-hidden reveal-y">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="">
+                </div>
+                <div class="col-span-12 md:col-span-5 h-[600px] flex flex-col gap-8">
+                    <div class="h-1/2 overflow-hidden reveal-y">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1740&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="">
+                    </div>
+                    <div class="h-1/2 bg-zinc-900 p-10 flex flex-col justify-end reveal-y">
+                        <h4 class="font-cinzel text-2xl mb-4">The Whiteboard Session</h4>
+                        <p class="text-xs opacity-40 leading-relaxed uppercase tracking-widest">A deep dive into strategy and empathy for young founders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-40 pb-16 px-10 text-center">
+        <div class="max-w-4xl mx-auto overflow-hidden mb-32">
+            <h2 class="text-[10px] tracking-[0.8em] opacity-40 uppercase mb-10">Ready to build the future?</h2>
+            <a href="mailto:mentor@visionary.com" class="footer-cta block font-cinzel text-5xl md:text-8xl hover:italic transition-all duration-700 tracking-tighter">
+                BE THE LIGHT.
+            </a>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center text-[9px] tracking-[1em] opacity-20 uppercase">
+            <p>© 2024 VISIONARY LEGACY ARCHIVE</p>
+            <p>DESIGNED FOR THE NEXT GENERATION</p>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 游標邏輯
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
+            gsap.to(follower, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.3 });
+        });
+
+        // 磁吸互動
+        document.querySelectorAll('a, button, .portfolio-item').forEach(el => {
+            el.addEventListener('mouseenter', () => gsap.to(follower, { scale: 2.5, backgroundColor: 'rgba(255,255,255,0.05)' }));
+            el.addEventListener('mouseleave', () => gsap.to(follower, { scale: 1, backgroundColor: 'transparent' }));
+        });
+
+        // 進場動畫：帶有緩慢擴散感
+        const tl = gsap.timeline();
+        tl.from("#hero-tag", { opacity: 0, y: 10, duration: 1 })
+          .from("#hero-title", { opacity: 0, y: 50, skewY: 5, duration: 1.5, ease: "power4.out" }, "-=0.5")
+          .from("#hero-para", { opacity: 0, y: 20, duration: 1 }, "-=1")
+          .from(".reveal-img", { clipPath: "inset(100% 0 0 0)", duration: 2, ease: "power4.inOut" }, "-=1.5");
+
+        // 滾動觸發
+        gsap.utils.toArray(".reveal-y").forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                y: 40,
+                opacity: 0,
+                duration: 1.5,
+                ease: "power3.out"
+            });
+        });
+
+        // 螢光筆啟動
+        ScrollTrigger.create({
+            trigger: "#mentorship",
+            start: "top 40%",
+            onEnter: () => document.getElementById('mentorship').classList.add('is-active')
+        });
+
+        // 視差滾動：讓背景光暈跟著動
+        gsap.to(".glow-bg", {
+            scrollTrigger: {
+                trigger: "body",
+                scrub: 1
+            },
+            y: 100,
+            opacity: 0.5
+        });
+    </script>
+</body>
+</html>
